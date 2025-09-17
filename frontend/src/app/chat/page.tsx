@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ChatBox from "../components/ChatBox";
 import MessageInput from "../components/MessageInput";
+import { sendMessage } from "../../services/chatApi";
 
 type IMessage = {
   id: number;
@@ -14,13 +15,19 @@ export default function ChatPage() {
     { id: 2, user: "Bob", text: "Oi, tudo bem?" },
   ]);
 
-  function onChangeMessage(message: string) {
+  async function onChangeMessage(message: string) {
     console.log("Mensagem enviada:", message);
+    const user = "Você";
 
-    const randomId = Math.floor(Math.random() * 1000);
-    messages.push({ id: randomId, user: "Você", text: message });
+    try {
+      await sendMessage(user, message);
 
-    setMessages([...messages]);
+      const randomId = Math.floor(Math.random() * 1000);
+      messages.push({ id: randomId, user: user, text: message });
+      setMessages([...messages]);
+    } catch (error) {
+      console.error("Falha ao enviar mensagem:", error);
+    }
   }
 
   return (

@@ -1,0 +1,19 @@
+{
+    "name": "marcosgregorio/backend",
+    "require": {
+        "slim/slim": "^4.14",
+        "vlucas/phpdotenv": "^5.6",
+        "php-amqplib/php-amqplib": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marcosgregorio\\Backend\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marcos",
+            "email": "marquinhogreg2013@gmail.com"
+        }
+    ]
+}
