@@ -15,7 +15,7 @@ class RabbitMQAdapter
         $this->connection = new AMQPStreamConnection($host, $port, $user, $password);
         $this->channel = $this->connection->channel();
 
-        $this->channel->queue_declare('chat_messages', false, false, false, false);
+        // $this->channel->queue_declare('chat_messages', false, false, false, false);
     }
 
     public function publish(array $data): void

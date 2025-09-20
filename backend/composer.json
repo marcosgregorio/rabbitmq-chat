@@ -8,7 +8,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Marcosgregorio\\Backend\\": "src/"
+            "Marcosgregorio\\Backend\\": "src/",
+            "App\\": "src/"
         }
     },
     "authors": [
