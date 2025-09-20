@@ -20,7 +20,7 @@ export default function ChatPage() {
     const user = "Você";
 
     try {
-      await sendMessage(user, message);
+      // await sendMessage(user, message);
 
       const randomId = Math.floor(Math.random() * 1000);
       messages.push({ id: randomId, user: user, text: message });

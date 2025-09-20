@@ -6,15 +6,15 @@ use App\Domain\Message;
 
 class MessageRepository
 {
-    private RabbitMQAdapter $adapter;
+    private RabbitMQAdapter $rabbitMQAdapter;
 
-    public function __construct(RabbitMQAdapter $adapter)
+    public function __construct(RabbitMQAdapter $rabbitMQAdapter)
     {
-        $this->adapter = $adapter;
+        $this->rabbitMQAdapter = $rabbitMQAdapter;
     }
 
     public function send(Message $message): void
     {
-        $this->adapter->publish($message->toArray());
+        $this->rabbitMQAdapter->publish($message->toArray());
     }
 }
