@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application;
+namespace App\Application\Chat;
 
 use App\Application\Chat\SendMessageUseCaseInterface;
 use App\Domain\Message;

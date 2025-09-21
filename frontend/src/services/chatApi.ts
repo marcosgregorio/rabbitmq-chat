@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = "http://localhost:8000";
 
 const chatApi = axios.create({
   baseURL: API_BASE_URL,
@@ -9,9 +9,9 @@ const chatApi = axios.create({
   },
 });
 
-export const sendMessage = async (user: string, message: string) => {
+export const sendMessage = async (user: string, text: string) => {
   try {
-    const reponse = await chatApi.post("/messages", { message });
+    const reponse = await chatApi.post("/messages", { user, text });
     return reponse.data;
   } catch (error) {
     console.error("Error sending message:", error);

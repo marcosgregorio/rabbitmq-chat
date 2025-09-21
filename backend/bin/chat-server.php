@@ -16,7 +16,7 @@ $server = IoServer::factory(
         ),
 
     ),
-    8080 // Porta do servidor WebSocket
+    8080
 );
 
 echo "Servidor WebSocket iniciado em ws://localhost:8080\n";
