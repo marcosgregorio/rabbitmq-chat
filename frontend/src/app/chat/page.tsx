@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ChatBox from "../components/ChatBox";
 import MessageInput from "../components/MessageInput";
 import { sendMessage } from "../../services/chatApi";
@@ -14,6 +14,20 @@ export default function ChatPage() {
     { id: 1, user: "Alice", text: "Olá 👋" },
     { id: 2, user: "Bob", text: "Oi, tudo bem?" },
   ]);
+
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:8080");
+
+    ws.onopen = () => {
+      console.log("Conexão WebSocket estabelecida");
+    };
+
+    ws.onmessage = (event) => {
+      const message: IMessage = JSON.parse(event.data);
+      console.log("Mensagem recebida via WebSocket:", message);
+      // setMessages((prevMessages) => [...prevMessages, message]);
+    };
+  }, []);
 
   async function onChangeMessage(message: string) {
     console.log("Mensagem enviada:", message);

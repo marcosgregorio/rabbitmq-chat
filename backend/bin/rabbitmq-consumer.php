@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -31,9 +31,24 @@ if (!$wsClient) {
 }
 
 $callback = function (AMQPMessage $msg) use ($wsClient) {
-    echo "Mensagem recebida: " . $msg->body . PHP_EOL;
+    echo "Mensagem recebida: " . $msg->getBody() . PHP_EOL;
 
-    fwrite($wsClient, $msg->body);
+    if (!$wsClient || !is_resource($wsClient) || feof($wsClient)) {
+        echo "Reconectando ao servidor WebSocket..." . PHP_EOL;
+        $wsClient = stream_socket_client('tcp://localhost:8080', $errno, $errstr, 30);
+        if (!$wsClient) {
+            echo "Erro ao reconectar: $errstr ($errno)" . PHP_EOL;
+            return;
+        }
+    }
+
+    try {
+        fwrite($wsClient, $msg->getBody());
+    } catch (\Throwable $e) {
+        echo "Erro ao enviar mensagem para o WebSocket: " . $e->getMessage() . PHP_EOL;
+        fclose($wsClient);
+        $wsClient = null;
+    }
 };
 
 $channel->basic_consume('chat_messages', '', false, true, false, false, $callback);

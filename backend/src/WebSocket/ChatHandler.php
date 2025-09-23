@@ -46,6 +46,7 @@ class ChatHandler implements MessageComponentInterface
 
     public function broadcast($msg)
     {
+        echo "Broadcasting message: {$msg}\n";
         foreach ($this->clients as $client) {
             $client->send($msg);
         }
