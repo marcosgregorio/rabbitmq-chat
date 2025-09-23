@@ -10,7 +10,8 @@
         "php-http/httplug": "^2.4",
         "open-telemetry/sdk": "^1.8",
         "open-telemetry/exporter-otlp": "^1.3",
-        "ratchet/pawl": "^0.4.3"
+        "ratchet/pawl": "^0.4.3",
+        "textalk/websocket": "^1.5"
     },
     "autoload": {
         "psr-4": {
