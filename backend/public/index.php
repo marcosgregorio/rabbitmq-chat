@@ -36,7 +36,7 @@ $app->add(function (ServerRequestInterface $request, RequestHandlerInterface $ha
   }
 
   $response = $response
-    ->withHeader('Acess-Control-Allow-Credentials', 'true')
+    ->withHeader('Access-Control-Allow-Credentials', 'true')
     ->withHeader('Access-Control-Allow-Origin', '*')
     ->withHeader('Access-Control-Allow-Headers', '*')
     ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
